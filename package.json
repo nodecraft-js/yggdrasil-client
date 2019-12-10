@@ -1,0 +1,28 @@
+{
+  "name": "@nodecraft-js/yggdrasil-client",
+  "description": "A client-side implementation for the Yggdrasil authentication system used by Mojang.",
+  "version": "0.0.1",
+  "license": "LGPL-3.0",
+  "contributors": [
+    "Jason Kwok <nodejs@jasonhk.email> (https://jasonhk.net)"
+  ],
+  "homepage": "https://github.com/nodecraft-js/yggdrasil-client#readme",
+  "keywords": [
+    "mojang",
+    "minecraft",
+    "yggdrasil"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodecraft-js/yggdrasil-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nodecraft-js/yggdrasil-client/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {}
+}
