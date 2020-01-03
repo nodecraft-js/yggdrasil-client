@@ -97,97 +97,13 @@ export class YggdrasilClient
     /**
      * Refresh a valid access token.
      * 
-     * @since 0.0.1
+     * @since 0.0.2
      * 
      * @param accessToken The unique identifier for a login session
+     * @param options     Additional options for the payload
      * @return The information of a updated login session
      */
-    public async refresh(accessToken: string): Promise<RefreshSchema.Response>;
-
-    /**
-     * Refresh a valid access token and switch the player's profile linked with
-     * this session.
-     * 
-     * @since 0.0.1
-     * 
-     * @param accessToken     The unique identifier for a login session
-     * @param selectedProfile The profile that the session will be linked to
-     * @return The information of a updated login session
-     */
-    public async refresh(accessToken: string, selectedProfile: YggdrasilProfile): Promise<RefreshSchema.Response>;
-
-    /**
-     * Refresh a valid access token.
-     * 
-     * @since 0.0.1
-     * 
-     * @param accessToken The unique identifier for a login session
-     * @param requestUser Determine whether to request the server to return the
-     *                    information of the user
-     * @return The information of a updated login session
-     */
-    public async refresh(accessToken: string, requestUser: boolean): Promise<RefreshSchema.Response>;
-
-    /**
-     * Refresh a valid access token.
-     * 
-     * @since 0.0.1
-     * 
-     * @param accessToken The unique identifier for a login session
-     * @param clientToken The unique identifier of a Yggdrasil client
-     * @return The information of a updated login session
-     */
-    public async refresh(accessToken: string, clientToken: string): Promise<RefreshSchema.Response>;
-
-    /**
-     * Refresh a valid access token and switch the player's profile linked with
-     * this session.
-     * 
-     * @since 0.0.1
-     * 
-     * @param accessToken     The unique identifier for a login session
-     * @param selectedProfile The profile that the session will be linked to
-     * @param requestUser     Determine whether to request the server to return the
-     *                        information of the user
-     * @return The information of a updated login session
-     */
-    public async refresh(accessToken: string, selectedProfile: YggdrasilProfile, requestUser: boolean): Promise<RefreshSchema.Response>;
-
-    /**
-     * Refresh a valid access token and switch the player's profile linked with
-     * this session.
-     * 
-     * @since 0.0.1
-     * 
-     * @param accessToken     The unique identifier for a login session
-     * @param selectedProfile The profile that the session will be linked to
-     * @param clientToken     The unique identifier of a Yggdrasil client
-     * @return The information of a updated login session
-     */
-    public async refresh(accessToken: string, selectedProfile: YggdrasilProfile, clientToken: string): Promise<RefreshSchema.Response>;
-
-    /**
-     * Refresh a valid access token and switch the player's profile linked with
-     * this session.
-     * 
-     * @since 0.0.1
-     * 
-     * @param accessToken     The unique identifier for a login session
-     * @param selectedProfile The profile that the session will be linked to
-     * @param requestUser     Determine whether to request the server to return the
-     *                        information of the user
-     * @param clientToken     The unique identifier of a Yggdrasil client
-     * @return The information of a updated login session
-     */
-    public async refresh(accessToken: string, selectedProfile: YggdrasilProfile, requestUser: boolean, clientToken: string): Promise<RefreshSchema.Response>;
-
-    /**
-     * Refresh a valid access token, and optionally switch the player's profile
-     * linked with this session.
-     * 
-     * @since 0.0.1
-     */
-    public async refresh(accessToken: string, ...args: [] | [YggdrasilProfile] | [boolean] | [string] | [YggdrasilProfile, boolean] | [YggdrasilProfile, string] | [YggdrasilProfile, boolean, string]): Promise<RefreshSchema.Response>
+    public async refresh(accessToken: string, options?: YggdrasilClient.RefreshOptions): Promise<RefreshSchema.Response>
     {
         return null;
     }
@@ -300,13 +216,38 @@ export namespace YggdrasilClient
          * @remarks
          * The authentication server will generate one randomly if none is provided.
          */
-        clientToken?: string;
+        clientToken?: string | null;
 
         /**
          * Determine whether to request the authentication server to also return the
          * information of the user.
          * 
          * @see {@link AuthenticateResponse.user|`AuthenticateResponse#user`}
+         * 
+         * @default
+         * false
+         */
+        requestUser?: boolean;
+    }
+
+    export interface RefreshOptions
+    {
+        /**
+         * The unique identifier of a Yggdrasil client.
+         * 
+         * @remarks
+         * The token must be identical to the one used to obtain the access token.
+         */
+        clientToken?: string | null;
+
+        /**
+         * The profile that the access token will be linked to.
+         */
+        selectedProfile?: YggdrasilProfile;
+
+        /**
+         * Determine whether to request the authentication server to also return the
+         * information of the user.
          * 
          * @default
          * false
