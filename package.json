@@ -20,9 +20,28 @@
     "url": "https://github.com/nodecraft-js/yggdrasil-client/issues"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest --config=\"configs/jest.config.js\"",
+    "build:docs": "npx typedoc --options \"configs/typedoc.json\" src",
+    "release": "",
+    "prepublishOnly": "npm run test"
   },
   "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "axios": "^0.19.0",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/jest-in-case": "^1.0.1",
+    "@types/uuid": "^3.4.6",
+    "jest": "^24.9.0",
+    "jest-in-case": "^1.0.2",
+    "jest-mock-axios": "^3.2.0",
+    "standard-version": "^7.0.1",
+    "ts-jest": "^24.2.0",
+    "typedoc": "^0.15.5",
+    "typedoc-plugin-external-module-name": "^2.1.0",
+    "typedoc-plugin-internal-external": "^2.0.2",
+    "typescript": "^3.7.3"
+  }
 }
