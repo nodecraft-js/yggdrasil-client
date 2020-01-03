@@ -97,7 +97,7 @@ export class YggdrasilClient
     /**
      * Refresh a valid access token.
      * 
-     * @since 0.0.2
+     * @since 0.1.0
      * 
      * @param accessToken The unique identifier for a login session
      * @param options     Additional options for the payload
