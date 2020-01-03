@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/nodecraft-js/yggdrasil-client/compare/v0.0.1...v0.1.0) (2020-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop support for `YggdrasilClient#refresh` overloads
+* drop support for `YggdrasilClient#authenticate` overloads
+
+### Features
+
+* added `YggdrasilClient.RefreshOptions` ([aa73fb4](https://github.com/nodecraft-js/yggdrasil-client/commit/aa73fb428dbb52da16241f0f30969da110c261f5))
+* allow `YggdrasilClient.AuthenticateOptions#clientToken` to set to null ([e161c63](https://github.com/nodecraft-js/yggdrasil-client/commit/e161c639d00e75b082b3165adcc79d5253f9a67b))
+
 ## 0.0.1 (2020-01-03)
 
 
