@@ -240,18 +240,41 @@ export namespace YggdrasilClient
         agent?: YggdrasilAgent;
 
         /**
+         * Determine whether to request the authentication server to also return the
+         * information of the user.
+         * 
+         * @see {@link AuthenticateResponse.user|`AuthenticateResponse#user`}
+         * 
+         * @default
+         * false
+         */
+        requestUser?: boolean;
+    }
+
+    export interface Options
+    {
+        /**
          * A unique identifier for this Yggdrasil client.
          * 
          * @remarks
          * The authentication server will generate one randomly if none is provided.
          */
-        clientToken?: string | null;
+        clientToken?: string;
+        
+        /**
+         * The information about the service that this Yggdrasil client serve for.
+         * 
+         * @see {@link AuthenticateResponse.availableProfiles|`AuthenticateResponse#availableProfiles`}
+         * @see {@link AuthenticateResponse.selectedProfile|`AuthenticateResponse#selectedProfile`}
+         */
+        agent?: YggdrasilAgent;
 
         /**
          * Determine whether to request the authentication server to also return the
          * information of the user.
          * 
          * @see {@link AuthenticateResponse.user|`AuthenticateResponse#user`}
+         * @see {@link RefreshResponse.user|`RefreshResponse#user`}
          * 
          * @default
          * false
