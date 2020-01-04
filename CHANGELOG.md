@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/nodecraft-js/yggdrasil-client/compare/v0.1.0...v0.1.1) (2020-01-04)
+
+
+### Features
+
+* **client:** add options for `new YggdrasilClient()` ([ceb7cba](https://github.com/nodecraft-js/yggdrasil-client/commit/ceb7cba83956548f7482c89b5a97b4544775b6df))
+* **client:** added `YggdrasilClient.Options` ([f5fab91](https://github.com/nodecraft-js/yggdrasil-client/commit/f5fab9160546a6980778e025a55fc8100965bcc9))
+* **client:** added `YggdrasilClient.OptionsWithAuthServer` ([9b8d351](https://github.com/nodecraft-js/yggdrasil-client/commit/9b8d351146386d3b04f3f45e87067b2109c0c972))
+* **client:** added overloads for `YggdrasilClient.constructor` ([39eaff5](https://github.com/nodecraft-js/yggdrasil-client/commit/39eaff5e39f550c8c55f18ef3bc29a2b0f5e4213))
+* **client:** added overloads for `YggdrasilClient#invalidate` ([65979d1](https://github.com/nodecraft-js/yggdrasil-client/commit/65979d1014bae89d33eab0a5431a952e8839292e))
+
 ## [0.1.0](https://github.com/nodecraft-js/yggdrasil-client/compare/v0.0.1...v0.1.0) (2020-01-03)
 
 
