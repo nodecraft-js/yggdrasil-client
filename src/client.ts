@@ -109,16 +109,9 @@ export class YggdrasilClient
      */
     public async invalidate(accessToken: string, clientToken?: string): Promise<void>
     {
-        const payload: InvalidateSchema.Payload = {
-            clientToken: this._clientToken,
-            accessToken: accessToken,
-        };
+        if (typeof clientToken !== "string") { clientToken = this._clientToken; }
 
-        if ((typeof clientToken === "string") && (clientToken.length !== 0))
-        {
-            payload.clientToken = clientToken;
-        }
-
+        const payload: InvalidateSchema.Payload = { accessToken, clientToken };
         this._client.invalidate(payload);
     }
 
