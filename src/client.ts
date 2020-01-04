@@ -40,7 +40,7 @@ export class YggdrasilClient
      */
     public get clientToken(): string { return this._clientToken; }
 
-    public constructor()
+    public constructor(...args: [] | [YggdrasilClient.Options] | [string] | [string, YggdrasilClient.Options])
     {
 
     }
