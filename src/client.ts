@@ -44,8 +44,38 @@ export class YggdrasilClient
      * Construct a new {@link YggdrasilClient|`YggdrasilClient`} instance.
      * 
      * @since 0.1.1
+     * 
+     * @return A {@link YggdrasilClient|`YggdrasilClient`} instance
      */
-    public constructor(...args: [] | [YggdrasilClient.Options] | [string] | [string, YggdrasilClient.Options])
+    public constructor();
+
+    /**
+     * Construct a new {@link YggdrasilClient|`YggdrasilClient`} instance.
+     * 
+     * @since 0.1.1
+     * 
+     * @param options Some additional options that customize the client
+     * @return A {@link YggdrasilClient|`YggdrasilClient`} instance
+     */
+    public constructor(options?: YggdrasilClient.OptionsWithAuthServer);
+    
+    /**
+     * Construct a new {@link YggdrasilClient|`YggdrasilClient`} instance.
+     * 
+     * @since 0.1.1
+     * 
+     * @param authServer The URL of the authentication server that will be used
+     * @param options    Some additional options that customize the client
+     * @return A {@link YggdrasilClient|`YggdrasilClient`} instance
+     */
+    public constructor(authServer?: string, options?: YggdrasilClient.Options);
+
+    /**
+     * Construct a new {@link YggdrasilClient|`YggdrasilClient`} instance.
+     * 
+     * @since 0.1.1
+     */
+    public constructor(...args: [] | [YggdrasilClient.OptionsWithAuthServer?] | [string?, YggdrasilClient.Options?])
     {
 
     }
