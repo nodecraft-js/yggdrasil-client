@@ -57,12 +57,9 @@ export class YggdrasilClient
      */
     public async authenticate(username: string, password: string, options?: YggdrasilClient.AuthenticateOptions): Promise<AuthenticateSchema.Response>
     {
-        const payload: AuthenticateSchema.Payload = {
-            username: username,
-            password: password,
-        };
+        const payload: AuthenticateSchema.Payload = { username, password };
 
-        const response: AxiosResponse<AuthenticateSchema.Response> = await this._client.authenticate(payload);
+        const response = await this._client.authenticate(payload);
         return response.data;
     }
 
