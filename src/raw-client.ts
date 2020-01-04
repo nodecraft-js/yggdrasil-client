@@ -46,6 +46,8 @@ export class RawYggdrasilClient
     public get authServer(): string { return this._authServer; }
 
     /**
+     * Construct a new {@link RawYggdrasilClient|`RawYggdrasilClient`} instance.
+     * 
      * @since 0.0.1
      * 
      * @param authServer The URL of the authentication server that will be used
