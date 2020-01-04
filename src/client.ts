@@ -40,6 +40,11 @@ export class YggdrasilClient
      */
     public get clientToken(): string { return this._clientToken; }
 
+    /**
+     * Construct a new {@link YggdrasilClient|`YggdrasilClient`} instance.
+     * 
+     * @since 0.1.1
+     */
     public constructor(...args: [] | [YggdrasilClient.Options] | [string] | [string, YggdrasilClient.Options])
     {
 
