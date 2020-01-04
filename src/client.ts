@@ -214,7 +214,7 @@ export class YggdrasilClient
             }
         }
 
-        const response: AxiosResponse = await this._client.validate(payload);
+        const response = await this._client.validate(payload);
         return (response.status === 204);
     }
 }
