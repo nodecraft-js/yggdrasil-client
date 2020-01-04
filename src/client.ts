@@ -321,6 +321,24 @@ export namespace YggdrasilClient
     }
 
     /**
+     * @since 0.1.1
+     */
+    export interface OptionsWithAuthServer extends Options
+    {
+        /**
+         * The URL of the authentication server that this {@link YggdrasilClient|`YggdrasilClient`}
+         * will be used.
+         * 
+         * @remarks
+         * The default authentication server is {@link MOJANG_AUTH_SERVER|`MOJANG_AUTH_SERVER`}.
+         * 
+         * @since 0.1.1
+         * @see {@link YggdrasilClient.authServer|`YggdrasilClient#authServer`}
+         */
+        authServer?: string;
+    }
+
+    /**
      * @since 0.0.1
      */
     export interface RefreshOptions
