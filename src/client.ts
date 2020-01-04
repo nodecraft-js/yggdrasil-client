@@ -26,7 +26,7 @@ export class YggdrasilClient
     private readonly _clientToken: string;
 
     /**
-     * The URL of the authentication server used by this Yggdrasil client.
+     * The URL of the authentication server used by this {@link YggdrasilClient|`YggdrasilClient`}.
      * 
      * @remarks
      * The default authentication server is {@link MOJANG_AUTH_SERVER|`MOJANG_AUTH_SERVER`}.
@@ -40,7 +40,42 @@ export class YggdrasilClient
      */
     public get clientToken(): string { return this._clientToken; }
 
-    public constructor()
+    /**
+     * Construct a new {@link YggdrasilClient|`YggdrasilClient`} instance.
+     * 
+     * @since 0.1.1
+     * 
+     * @return A {@link YggdrasilClient|`YggdrasilClient`} instance
+     */
+    public constructor();
+
+    /**
+     * Construct a new {@link YggdrasilClient|`YggdrasilClient`} instance.
+     * 
+     * @since 0.1.1
+     * 
+     * @param options Some additional options that customize the client
+     * @return A {@link YggdrasilClient|`YggdrasilClient`} instance
+     */
+    public constructor(options?: YggdrasilClient.OptionsWithAuthServer);
+    
+    /**
+     * Construct a new {@link YggdrasilClient|`YggdrasilClient`} instance.
+     * 
+     * @since 0.1.1
+     * 
+     * @param authServer The URL of the authentication server that will be used
+     * @param options    Some additional options that customize the client
+     * @return A {@link YggdrasilClient|`YggdrasilClient`} instance
+     */
+    public constructor(authServer?: string, options?: YggdrasilClient.Options);
+
+    /**
+     * Construct a new {@link YggdrasilClient|`YggdrasilClient`} instance.
+     * 
+     * @since 0.1.1
+     */
+    public constructor(...args: [] | [YggdrasilClient.OptionsWithAuthServer?] | [string?, YggdrasilClient.Options?])
     {
 
     }
@@ -57,18 +92,35 @@ export class YggdrasilClient
      */
     public async authenticate(username: string, password: string, options?: YggdrasilClient.AuthenticateOptions): Promise<AuthenticateSchema.Response>
     {
-        const payload: AuthenticateSchema.Payload = {
-            username: username,
-            password: password,
-        };
+        const payload: AuthenticateSchema.Payload = { username, password };
 
-        const response: AxiosResponse<AuthenticateSchema.Response> = await this._client.authenticate(payload);
+        const response = await this._client.authenticate(payload);
         return response.data;
     }
 
     /**
      * Invalidate all access tokens associated with a specific user using their
      * access token and client token.
+     * 
+     * @remarks
+     * Invalidate all access tokens with the client token of the current client.
+     * 
+     * @remarks
+     * The client token must be identical to the one used to obtain the access
+     * token.
+     * 
+     * @since 0.0.1
+     * 
+     * @param accessToken The unique identifier for a login session
+     */
+    public async invalidate(accessToken: string): Promise<void>;
+
+    /**
+     * Invalidate all access tokens associated with a specific user using their
+     * access token and client token.
+     * 
+     * @remarks
+     * Explicitly set a client token to use to invalidate all access tokens.
      * 
      * @remarks
      * The client token must be identical to the one used to obtain the access
@@ -79,18 +131,19 @@ export class YggdrasilClient
      * @param accessToken The unique identifier for a login session
      * @param clientToken The unique identifier of a Yggdrasil client
      */
+    public async invalidate(accessToken: string, clientToken: string): Promise<void>;
+
+    /**
+     * Invalidate all access tokens associated with a specific user using their
+     * access token and client token.
+     * 
+     * @since 0.0.1
+     */
     public async invalidate(accessToken: string, clientToken?: string): Promise<void>
     {
-        const payload: InvalidateSchema.Payload = {
-            clientToken: this._clientToken,
-            accessToken: accessToken,
-        };
+        if (typeof clientToken !== "string") { clientToken = this._clientToken; }
 
-        if ((typeof clientToken === "string") && (clientToken.length !== 0))
-        {
-            payload.clientToken = clientToken;
-        }
-
+        const payload: InvalidateSchema.Payload = { accessToken, clientToken };
         this._client.invalidate(payload);
     }
 
@@ -193,23 +246,18 @@ export class YggdrasilClient
             }
         }
 
-        const response: AxiosResponse = await this._client.validate(payload);
+        const response = await this._client.validate(payload);
         return (response.status === 204);
     }
 }
 
 export namespace YggdrasilClient
 {
+    /**
+     * @since 0.0.1
+     */
     export interface AuthenticateOptions
     {
-        /**
-         * The information about the service that this Yggdrasil client serve for.
-         * 
-         * @see {@link AuthenticateResponse.availableProfiles|`AuthenticateResponse#availableProfiles`}
-         * @see {@link AuthenticateResponse.selectedProfile|`AuthenticateResponse#selectedProfile`}
-         */
-        agent?: YggdrasilAgent;
-
         /**
          * A unique identifier for this Yggdrasil client.
          * 
@@ -217,6 +265,14 @@ export namespace YggdrasilClient
          * The authentication server will generate one randomly if none is provided.
          */
         clientToken?: string | null;
+
+        /**
+         * The information about the service that this Yggdrasil client serve for.
+         * 
+         * @see {@link AuthenticateResponse.availableProfiles|`AuthenticateResponse#availableProfiles`}
+         * @see {@link AuthenticateResponse.selectedProfile|`AuthenticateResponse#selectedProfile`}
+         */
+        agent?: YggdrasilAgent;
 
         /**
          * Determine whether to request the authentication server to also return the
@@ -230,6 +286,67 @@ export namespace YggdrasilClient
         requestUser?: boolean;
     }
 
+    /**
+     * @since 0.1.1
+     */
+    export interface Options
+    {
+        /**
+         * A unique identifier for this {@link YggdrasilClient|`YggdrasilClient`}.
+         * 
+         * @remarks
+         * The {@link YggdrasilClient|`YggdrasilClient`} will generate one randomly if
+         * none is provided.
+         * 
+         * @since 0.1.1
+         * @see {@link YggdrasilClient.clientToken|`YggdrasilClient#clientToken`}
+         */
+        clientToken?: string;
+        
+        /**
+         * The information about the service that this Yggdrasil client serve for.
+         * 
+         * @since 0.1.1
+         * @see {@link AuthenticateResponse.availableProfiles|`AuthenticateResponse#availableProfiles`}
+         * @see {@link AuthenticateResponse.selectedProfile|`AuthenticateResponse#selectedProfile`}
+         */
+        agent?: YggdrasilAgent;
+
+        /**
+         * Determine whether to request the authentication server to also return the
+         * information of the user.
+         * 
+         * @since 0.1.1
+         * @see {@link AuthenticateResponse.user|`AuthenticateResponse#user`}
+         * @see {@link RefreshResponse.user|`RefreshResponse#user`}
+         * 
+         * @default
+         * false
+         */
+        requestUser?: boolean;
+    }
+
+    /**
+     * @since 0.1.1
+     */
+    export interface OptionsWithAuthServer extends Options
+    {
+        /**
+         * The URL of the authentication server that this {@link YggdrasilClient|`YggdrasilClient`}
+         * will be used.
+         * 
+         * @remarks
+         * The default authentication server is {@link MOJANG_AUTH_SERVER|`MOJANG_AUTH_SERVER`}.
+         * 
+         * @since 0.1.1
+         * @see {@link YggdrasilClient.authServer|`YggdrasilClient#authServer`}
+         */
+        authServer?: string;
+    }
+
+    /**
+     * @since 0.0.1
+     */
     export interface RefreshOptions
     {
         /**
@@ -248,6 +365,8 @@ export namespace YggdrasilClient
         /**
          * Determine whether to request the authentication server to also return the
          * information of the user.
+         * 
+         * @see {@link RefreshResponse.user|`RefreshResponse#user`}
          * 
          * @default
          * false
