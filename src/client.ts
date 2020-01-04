@@ -71,6 +71,26 @@ export class YggdrasilClient
      * access token and client token.
      * 
      * @remarks
+     * Invalidate all access tokens with the client token of the current client.
+     * 
+     * @remarks
+     * The client token must be identical to the one used to obtain the access
+     * token.
+     * 
+     * @since 0.0.1
+     * 
+     * @param accessToken The unique identifier for a login session
+     */
+    public async invalidate(accessToken: string): Promise<void>;
+
+    /**
+     * Invalidate all access tokens associated with a specific user using their
+     * access token and client token.
+     * 
+     * @remarks
+     * Explicitly set a client token to use to invalidate all access tokens.
+     * 
+     * @remarks
      * The client token must be identical to the one used to obtain the access
      * token.
      * 
@@ -78,6 +98,14 @@ export class YggdrasilClient
      * 
      * @param accessToken The unique identifier for a login session
      * @param clientToken The unique identifier of a Yggdrasil client
+     */
+    public async invalidate(accessToken: string, clientToken: string): Promise<void>;
+
+    /**
+     * Invalidate all access tokens associated with a specific user using their
+     * access token and client token.
+     * 
+     * @since 0.0.1
      */
     public async invalidate(accessToken: string, clientToken?: string): Promise<void>
     {
