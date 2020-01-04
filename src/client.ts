@@ -26,7 +26,7 @@ export class YggdrasilClient
     private readonly _clientToken: string;
 
     /**
-     * The URL of the authentication server used by this Yggdrasil client.
+     * The URL of the authentication server used by this {@link YggdrasilClient|`YggdrasilClient`}.
      * 
      * @remarks
      * The default authentication server is {@link MOJANG_AUTH_SERVER|`MOJANG_AUTH_SERVER`}.
@@ -292,16 +292,21 @@ export namespace YggdrasilClient
     export interface Options
     {
         /**
-         * A unique identifier for this Yggdrasil client.
+         * A unique identifier for this {@link YggdrasilClient|`YggdrasilClient`}.
          * 
          * @remarks
-         * The authentication server will generate one randomly if none is provided.
+         * The {@link YggdrasilClient|`YggdrasilClient`} will generate one randomly if
+         * none is provided.
+         * 
+         * @since 0.1.1
+         * @see {@link YggdrasilClient.clientToken|`YggdrasilClient#clientToken`}
          */
         clientToken?: string;
         
         /**
          * The information about the service that this Yggdrasil client serve for.
          * 
+         * @since 0.1.1
          * @see {@link AuthenticateResponse.availableProfiles|`AuthenticateResponse#availableProfiles`}
          * @see {@link AuthenticateResponse.selectedProfile|`AuthenticateResponse#selectedProfile`}
          */
@@ -311,6 +316,7 @@ export namespace YggdrasilClient
          * Determine whether to request the authentication server to also return the
          * information of the user.
          * 
+         * @since 0.1.1
          * @see {@link AuthenticateResponse.user|`AuthenticateResponse#user`}
          * @see {@link RefreshResponse.user|`RefreshResponse#user`}
          * 
