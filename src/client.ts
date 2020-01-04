@@ -223,6 +223,9 @@ export class YggdrasilClient
 
 export namespace YggdrasilClient
 {
+    /**
+     * @since 0.0.1
+     */
     export interface AuthenticateOptions
     {
         /**
@@ -253,6 +256,9 @@ export namespace YggdrasilClient
         requestUser?: boolean;
     }
 
+    /**
+     * @since 0.1.1
+     */
     export interface Options
     {
         /**
@@ -284,6 +290,9 @@ export namespace YggdrasilClient
         requestUser?: boolean;
     }
 
+    /**
+     * @since 0.0.1
+     */
     export interface RefreshOptions
     {
         /**
