@@ -12,20 +12,20 @@ import { YggdrasilAgent } from "../../types/agent";
 export interface AuthenticatePayload
 {
     /**
-     * The information about the service that this Yggdrasil client serve for.
-     * 
-     * @see {@link AuthenticateResponse.availableProfiles|`AuthenticateResponse#availableProfiles`}
-     * @see {@link AuthenticateResponse.selectedProfile|`AuthenticateResponse#selectedProfile`}
-     */
-    agent?: YggdrasilAgent;
-
-    /**
      * A unique identifier for this Yggdrasil client.
      * 
      * @remarks
      * The authentication server will generate one randomly if none is provided.
      */
     clientToken?: string;
+
+    /**
+     * The information about the service that this Yggdrasil client serve for.
+     * 
+     * @see {@link AuthenticateResponse.availableProfiles|`AuthenticateResponse#availableProfiles`}
+     * @see {@link AuthenticateResponse.selectedProfile|`AuthenticateResponse#selectedProfile`}
+     */
+    agent?: YggdrasilAgent;
 
     /**
      * The username of the user.
