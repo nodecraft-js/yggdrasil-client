@@ -33,6 +33,8 @@ export interface RefreshPayload
      * Determine whether to request the authentication server to also return the
      * information of the user.
      * 
+     * @see {@link RefreshResponse.user|`RefreshResponse#user`}
+     * 
      * @default
      * false
      */
