@@ -224,6 +224,14 @@ export namespace YggdrasilClient
     export interface AuthenticateOptions
     {
         /**
+         * A unique identifier for this Yggdrasil client.
+         * 
+         * @remarks
+         * The authentication server will generate one randomly if none is provided.
+         */
+        clientToken?: string | null;
+
+        /**
          * The information about the service that this Yggdrasil client serve for.
          * 
          * @see {@link AuthenticateResponse.availableProfiles|`AuthenticateResponse#availableProfiles`}
